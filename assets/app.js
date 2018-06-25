@@ -1,4 +1,6 @@
 
+$(document).ready(function() {
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCP4yljquUnihuQH0yOJ-d1nv7cOKLBTmo",
@@ -9,14 +11,14 @@ var config = {
     messagingSenderId: "502851230817"
   };
   firebase.initializeApp(config);
+  var database = firebase.database();
 
 //Setting global variables
-var train
-var line
-var destination
-var trainTime
-var frequency
-var trainNames = ["Grand Western", "Blue Coast", "Smoky Express", "Carolina 500"];
+var trainName = $("#train-input").val().trim();
+var destination = $("#destination-input").val().trim();
+var trainTime = $("#time-input").val().trim();
+var frequency = $("#frequency-input").val().trim();
+var trainArray = ["Grand Western", "Blue Coast", "Clark Express", "Carolina 500"];
 
 //Adding new train pt. 1
 function renderButtons() {
@@ -25,20 +27,22 @@ function renderButtons() {
   for (var i = 0; i < trainNames.length; i++) {
     var y = $("<button>");
     y.addClass("train");
-    y.text(trainNames[i]);
+    y.text(trainArray[i]);
     $("_NO_INPUT_").append(y);
   }
 }
 
 //Adding new train pt. 2
-$("_NO_INPUT_").on("click", function(event) {
+$("#submit").on("click", function(event) {
   event.preventDefault();
   var newTrainName = $("_NO_INPUT_").val().trim();
-  trainNames.push(newTrainNames);
+  trainArray.push(newTrainNames);
 
   renderButtons();
 });
 
+
+});
     
 
 
