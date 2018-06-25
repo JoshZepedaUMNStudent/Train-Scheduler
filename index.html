@@ -1,0 +1,49 @@
+<!DOCTYPE>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+	<link rel="stylesheet" href="assets/style.css">
+	<script src="assets/app.js"></script>
+</head>
+<body>
+    <div class="container-1" style="margin-bottom:100">
+        <h3>Train Schedule</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Train Name</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Frequency (min)</th>
+                    <th scope="col">Next Arrival</th>
+                    <th scope="col">Minutes Away</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    
+    <form>
+        <div class="train-form">
+          <label for="user-input">Train Name</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="train-form">
+          <label for="user-input" id="destinationInput">Destination</label>
+          <input type="text" class="form-control" id="user-input">
+        </div>
+        <div class="train-form">
+            <label for="user-input" id="timeInput">First Train Time (millitary time)</label>
+            <input type="text" class="form-control" id="user-input">
+          </div>
+          <div class="train-form">
+            <label for="user-input" id="frequencyInput">Frequency (min)</label>
+            <input type="text" class="form-control" id="user-input">
+          </div>
+        <button type="submit" class="btn btn-primary" id="trainSubmit">Submit</button>
+      </form>
+
+</body>
+</html>
