@@ -21,45 +21,33 @@ var frequency = $("#frequency-input").val().trim();
 var trainArray = ["Grand Western", "Blue Coast", "Clark Express", "Carolina 500"];
 
 //Adding new train pt. 1
-function renderButtons() {
-  $("_NO_INPUT_").empty();
+function displayInfo() {
+  $(tRow).empty();
   
-  for (var i = 0; i < trainNames.length; i++) {
-    var y = $("<button>");
-    y.addClass("train");
-    y.text(trainArray[i]);
-    $("_NO_INPUT_").append(y);
+  for (var i = 0; i < trainArray.length; i++) {
+    var tBody = $("tbody");
+    var tRow = $("<tr>");
+    $(tRow).append(trainArray.length);
   }
 }
 
 //Adding new train pt. 2
 $("#submit").on("click", function(event) {
   event.preventDefault();
-  var newTrainName = $("_NO_INPUT_").val().trim();
-  trainArray.push(newTrainNames);
+  var newTrainName = $("#train-input").val().trim();
+  var newDestination = $("#destination-input").val().trim();
+  var newTime = $("#time-input").val().trim();
+  var newFrequency = $("#frequency-input").val().trim();
+  trainArray.push(newTrainName);
+  trainArray.push(newDestination);
+  trainArray.push(newTime);
+  trainArray.push(newFrequency);
 
-  renderButtons();
+  displayInfo();
 });
 
+displayInfo();
 
 });
     
 
-
-
-  
-  
- 
-// $("#user-input").on("click", function() {
-//     var train
-//     var line
-//     var destination
-//     var trainTime
-//     var frequency
-// }); 
-
-//      var trainName = $("#trainNameInput").val().trim();
-// 		var lineName = $("#lineInput").val().trim();
-// 		var destination = $("#destinationInput").val().trim();
-// 		var trainTimeInput = moment($("#trainTimeInput").val().trim(), "HH:mm").subtract(10, "years").format("X");;
-// 		var frequencyInput = $("#frequencyInput").val().trim();
