@@ -1,6 +1,4 @@
 
-
-
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCP4yljquUnihuQH0yOJ-d1nv7cOKLBTmo",
@@ -12,10 +10,15 @@ var config = {
   };
   firebase.initializeApp(config);
 
-//Array for trains
+//Setting global variables
+var train
+var line
+var destination
+var trainTime
+var frequency
 var trainNames = ["Grand Western", "Blue Coast", "Smoky Express", "Carolina 500"];
 
-//Adding new train
+//Adding new train pt. 1
 function renderButtons() {
   $("_NO_INPUT_").empty();
   
@@ -27,6 +30,7 @@ function renderButtons() {
   }
 }
 
+//Adding new train pt. 2
 $("_NO_INPUT_").on("click", function(event) {
   event.preventDefault();
   var newTrainName = $("_NO_INPUT_").val().trim();
