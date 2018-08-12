@@ -29,7 +29,7 @@ $(document).ready(function () {
       name: name,
       destination: destination,
       frequency: frequency,
-      time: firebase.database.ServerValue.TIMESTAMP
+      time: time
     });
   });
 
@@ -46,32 +46,67 @@ $(document).ready(function () {
 
   //NOTE: Listening for changes in database and retrieving them (use "child_changed" id using snapshot/once method)
   database.ref().on("child_added", function (childSnapshot) {  
+    var currentTime = new Date();
+    var firstTrainTime = new Date("2018-08-12 " + childSnapshot.val().time);
+    firstTrainTime.setFullYear(currentTime.getFullYear());
+    firstTrainTime.setMonth(currentTime.getMonth());
+    firstTrainTime.setDate(currentTime.getDate());
+    var timeSince = currentTime - firstTrainTime;
+    var frequency = Number(childSnapshot.val().frequency) * 60 * 1000;
+    var multiplier = Math.ceil(timeSince / frequency);
+    var nextTrain = moment(firstTrainTime.getTime() + (frequency * multiplier));
+    var minutesUntil = nextTrain.diff(moment(), "minutes");
+
     $("#schedule").append(
       "<tr><td id='nameDisplay'>" + childSnapshot.val().name +
       "</td><td id='destDisplay'>" + childSnapshot.val().destination +
-      "</td><td id='freqDisplay'>" + childSnapshot.val().frequency + "</td></tr>"
+      "</td><td id='freqDisplay'>" + childSnapshot.val().frequency + 
+      "</td><td id='nextArrivalDisplay'>" + moment(nextTrain).format("h:mma") + 
+      "</td><td id='freqDisplay'>" + minutesUntil + 
+      "</td></tr>"
     )
   });
-  // });
 });
 
+// Variable for frequency (in minutes)
+// var tFrequency = "";
+
+// Variable for first train time
+// var firstTime = "";
+
+// Converting first time (pushing back 1 year to format)
+// var firstTimeConverted = MediaStreamErrorEvent(firstTime, "HH:mm").subtract(1, "years");
+// console.log(firstTimeConverted);
 
 
 
-// SAVED FOR REFERENCE
-
-// var trainData = []
-  // console.log(trainData);
-
-  // //Adding new train pt. 1
-  // function displayInfor() {
- 
-  //   for (var i = 0; i < trainData.length; i++) {
-  //     var train = trainData[i];
-  //     $('#schedule tr:last').after('<tr><td>' + train.name + '</td><td>' + train.destination + '</td><td>' + train.frequency + '</td><td>' + train.time + '</td><td>' + train.minAway + '</td> </tr>');
-  //   }
-  // }
+// Current time
+// var currentTime = moment();
+// console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
 
-  // $('#schedule tr:last').after('<tr><td>'+newTrain.name+'</td><td>'+newTrain.destination+'</td><td>'+newTrain.frequency+'</td><td>'+newTrain.time+'</td><td>'+newTrain.minAway+'</td> </tr>');
+
+
+// MOMENT.JS STARTS HERE!!!!!
+
+
+
+// Variable for frequency (in minutes)
+// var tFrequency = "";
+
+// Variable for first train time
+// var firstTime = "";
+
+// Converting first time (pushing back 1 year to format)
+// var firstTimeConverted = MediaStreamErrorEvent(firstTime, "HH:mm").subtract(1, "years");
+// console.log(firstTimeConverted);
+
+
+
+
+
+
+// Current time
+// var currentTime = moment();
+// console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
