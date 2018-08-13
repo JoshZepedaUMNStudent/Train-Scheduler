@@ -33,18 +33,9 @@ $(document).ready(function () {
     });
   });
 
-  //NOTE: Getting data snapshot from Firebase path only once
-  // database.ref().once("value").then(function(snapshot) {
-  //   var trains = snapshot.val();
-  //   $.each(trains, function(key, train){
-  //     $("#schedule").append(
-  //       "<tr><td id='nameDisplay'>" + train.name +
-  //       "</td><td id='destDisplay'>" + train.destination +
-  //       "</td><td id='freqDisplay'>" + train.frequency + "</td></tr>"
-  //     )
-  //   })
+  
 
-  //NOTE: Listening for changes in database and retrieving them (use "child_changed" id using snapshot/once method)
+  //NOTE: Listening for changes in database and retrieving them 
   database.ref().on("child_added", function (childSnapshot) {  
     var currentTime = new Date();
     var firstTrainTime = new Date("2018-08-12 " + childSnapshot.val().time);
@@ -68,45 +59,21 @@ $(document).ready(function () {
   });
 });
 
-// Variable for frequency (in minutes)
-// var tFrequency = "";
-
-// Variable for first train time
-// var firstTime = "";
-
-// Converting first time (pushing back 1 year to format)
-// var firstTimeConverted = MediaStreamErrorEvent(firstTime, "HH:mm").subtract(1, "years");
-// console.log(firstTimeConverted);
-
-
-
-// Current time
-// var currentTime = moment();
-// console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-
-
-
-
-// MOMENT.JS STARTS HERE!!!!!
-
-
-
-// Variable for frequency (in minutes)
-// var tFrequency = "";
-
-// Variable for first train time
-// var firstTime = "";
-
-// Converting first time (pushing back 1 year to format)
-// var firstTimeConverted = MediaStreamErrorEvent(firstTime, "HH:mm").subtract(1, "years");
-// console.log(firstTimeConverted);
+// END OF CODE
 
 
 
 
 
 
-// Current time
-// var currentTime = moment();
-// console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-
+// NOTE:  FOR REFERENCE ONLY!!
+// Getting data snapshot from Firebase path only once (use "child_changed" id using snapshot/once method)
+  // database.ref().once("value").then(function(snapshot) {
+  //   var trains = snapshot.val();
+  //   $.each(trains, function(key, train){
+  //     $("#schedule").append(
+  //       "<tr><td id='nameDisplay'>" + train.name +
+  //       "</td><td id='destDisplay'>" + train.destination +
+  //       "</td><td id='freqDisplay'>" + train.frequency + "</td></tr>"
+  //     )
+  //   })
