@@ -1,1 +1,1 @@
-# Train-Scheduler
+Train schedule chart where the user inputs a train line with destination, first arrival time and frequency. Based on the inputs, the app calculates the train's next arrival time and the minutes till arrival. Created with HTML, CSS, Javascript and jQuery, Moment.js, and data is stored and retrieved using Firebase.
